@@ -1,13 +1,17 @@
 catalog = []
-categorias_unicas = set()
+unique_categories = set()
 
 print("======================================")
 print("BIENVENIDO AL SISTEMA DE CATÁLOGO V1.0")
 print("======================================")
 
-id_pieza = input("Introduce el ID de la pieza: ")
-nombre_pieza = input("Introduce el nombre del pieza: ")
-precio = float(input("Introduce el precio del pieza: "))
-categoria = input("Introduce la categoria del pieza: ")
-estado = input("Introduce el estado del pieza: ")
-descripcion = input("Introduce la descripcion del pieza: ")
+item_id = input("Introduce el ID de la pieza: ")
+name = input("Introduce el nombre del pieza: ")
+price = float(input("Introduce el precio del pieza: "))
+
+print(type(price))
+
+category = input("Introduce la categoria del pieza: ")
+status = input("Introduce el estado del pieza: ")
+description = input("Introduce la descripcion del pieza: ")
+
