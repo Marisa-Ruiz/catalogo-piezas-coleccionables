@@ -11,7 +11,14 @@ price = float(input("Introduce el precio del pieza: "))
 
 print(type(price))
 
-category = input("Introduce la categoria del pieza: ")
-status = input("Introduce el estado del pieza: ")
-description = input("Introduce la descripcion del pieza: ")
+#category = input("Introduce la categoria del pieza: ")
+#status = input("Introduce el estado del pieza: ")
+#description = input("Introduce la descripcion del pieza: ")
 
+item = {
+    "id": item_id,
+    "name": name,
+    "price": price
+}
+
+print(item)
