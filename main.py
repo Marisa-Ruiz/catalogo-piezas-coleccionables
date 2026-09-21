@@ -23,3 +23,9 @@ for i in range(10):
     }
 
     catalog.append(item)
+
+print(f"\nEl catálogo contiene {len(catalog)} piezas registradas.")
+
+print("\nIDs registrados en el catálogo:")
+for piece in catalog:
+    print(f"- {piece['id']}: {piece['name']}")
