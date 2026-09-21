@@ -38,3 +38,30 @@ for piece in catalog:
 
 print(f"\nCategorías registradas: {unique_categories}")
 print(f"Cantidad de categorías diferentes: {len(unique_categories)}")
+
+print("\n===== PIEZAS DISPONIBLES =====")
+found = False
+for piece in catalog:
+    if piece['status'] == "disponible":
+        print(f"- {piece['id']}: {piece['name']} ({piece['price']})")
+        found = True
+if not found:
+    print("No hay piezas disponibles.")
+
+print("\n===== PIEZAS RESERVADAS =====")
+found = False
+for piece in catalog:
+    if piece['status'] == "reservada":
+        print(f"- {piece['id']}: {piece['name']} ({piece['price']})")
+        found = True
+if not found:
+    print("No hay piezas reservadas.")
+
+print("\n===== PIEZAS VENDIDAS =====")
+found = False
+for piece in catalog:
+    if piece['status'] == "vendida":
+        print(f"- {piece['id']}: {piece['name']} ({piece['price']})")
+        found = True
+if not found:
+    print("No hay piezas vendidas.")
