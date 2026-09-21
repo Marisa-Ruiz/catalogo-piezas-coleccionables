@@ -27,9 +27,14 @@ for i in range(10):
 
 print(f"\nEl catálogo contiene {len(catalog)} piezas registradas.")
 
-print("\nIDs registrados en el catálogo:")
+print("\n===== CATÁLOGO COMPLETO =====")
 for piece in catalog:
-    print(f"- {piece['id']}: {piece['name']}")
+    print(f"\nID: {piece['id']}")
+    print(f"Nombre: {piece['name']}")
+    print(f"Categoría: {piece['category']}")
+    print(f"Precio: {piece['price']}")
+    print(f"Estado: {piece['status']}")
+    print(f"Descripción: {piece['description']}")
 
 print(f"\nCategorías registradas: {unique_categories}")
 print(f"Cantidad de categorías diferentes: {len(unique_categories)}")
