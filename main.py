@@ -65,3 +65,23 @@ for piece in catalog:
         found = True
 if not found:
     print("No hay piezas vendidas.")
+
+print("\n===== FILTRAR POR PRECIO MÍNIMO =====")
+
+valid_price = False
+while not valid_price:
+    min_price_input = input("Introduce un precio mínimo: ")
+    if min_price_input.replace(".", "", 1).isdigit():
+        min_price = float(min_price_input)
+        valid_price = True
+    else:
+        print("Debes introducir un valor numérico.")
+
+found = False
+for piece in catalog:
+    if piece['price'] > min_price:
+        print(f"- {piece['id']}: {piece['name']} ({piece['price']})")
+        found = True
+
+if not found:
+    print(f"No hay piezas con precio superior a {min_price}.")
