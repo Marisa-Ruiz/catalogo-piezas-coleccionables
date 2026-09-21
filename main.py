@@ -23,9 +23,13 @@ for i in range(10):
     }
 
     catalog.append(item)
+    unique_categories.add(category)
 
 print(f"\nEl catálogo contiene {len(catalog)} piezas registradas.")
 
 print("\nIDs registrados en el catálogo:")
 for piece in catalog:
     print(f"- {piece['id']}: {piece['name']}")
+
+print(f"\nCategorías registradas: {unique_categories}")
+print(f"Cantidad de categorías diferentes: {len(unique_categories)}")
