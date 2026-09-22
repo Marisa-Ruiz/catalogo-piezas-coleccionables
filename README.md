@@ -28,7 +28,8 @@ descripción.
 
 ## Ejemplo de interacción
 
-======================================
+==============================
+
 BIENVENIDO AL SISTEMA DE CATÁLOGO V1.0
 
 Introduce el ID de la pieza: VJ-01
