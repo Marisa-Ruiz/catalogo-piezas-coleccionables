@@ -85,3 +85,18 @@ for piece in catalog:
 
 if not found:
     print(f"No hay piezas con precio superior a {min_price}.")
+
+print("\n===== REGLA DE PUBLICACIÓN =====")
+for piece in catalog:
+    can_publish = piece['price'] > 0 and piece['status'] == "disponible"
+    print(f"- {piece['id']}: {piece['name']} -> ¿Se puede publicar? {can_publish}")
+
+print("\n===== REGLA DE REVISIÓN =====")
+for piece in catalog:
+    needs_review = piece['status'] == "reservada" or piece['status'] == "vendida"
+    print(f"- {piece['id']}: {piece['name']} -> ¿Requiere revisión? {needs_review}")
+
+print("\n===== PIEZAS NO VENDIDAS =====")
+for piece in catalog:
+    if piece['status'] != "vendida":
+        print(f"- {piece['id']}: {piece['name']} ({piece['status']})")
