@@ -171,3 +171,29 @@ while running:
 
     else:
         print("\nOpción no válida. Introduce un número entre 1 y 4.")
+
+available_count = 0
+reserved_count = 0
+sold_count = 0
+total_price = 0
+
+for piece in catalog:
+    if piece['status'] == "disponible":
+        available_count = available_count + 1
+    elif piece['status'] == "reservada":
+        reserved_count = reserved_count + 1
+    elif piece['status'] == "vendida":
+        sold_count = sold_count + 1
+    total_price = total_price + piece['price']
+
+print("\n===== MÉTRICAS DEL CATÁLOGO =====")
+print(f"Piezas disponibles: {available_count}")
+print(f"Piezas reservadas: {reserved_count}")
+print(f"Piezas vendidas: {sold_count}")
+print(f"Total de piezas: {len(catalog)}")
+print(f"Suma total de precios: {total_price:.2f}")
+print(f"Precio promedio del catálogo: {total_price / len(catalog):.2f}")
+
+print("\n===== PIEZAS ENUMERADAS =====")
+for index, piece in enumerate(catalog, start=1):
+    print(f"{index}. {piece['name']}")
