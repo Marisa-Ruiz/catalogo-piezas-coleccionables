@@ -1,17 +1,64 @@
+ALLOWED_STATUSES = ["disponible", "reservada", "vendida"]
+REQUIRED_WORDS_IN_DESCRIPTION = ["usada", "certificada"]
+
 catalog = []
 unique_categories = set()
+
+
+def ask_non_empty_text(prompt_text):
+    while True:
+        value = input(prompt_text).strip()
+        if value != "":
+            return value
+        print("Este campo no puede estar vacío. Inténtalo de nuevo.")
+
+
+def ask_valid_price(prompt_text):
+    while True:
+        raw_value = input(prompt_text).strip()
+        if raw_value.replace(".", "", 1).isdigit() and float(raw_value) > 0:
+            return float(raw_value)
+        print("El precio debe ser un número mayor que cero.")
+
+
+def ask_valid_status(prompt_text):
+    while True:
+        value = input(prompt_text).strip().lower()
+        if value in ALLOWED_STATUSES:
+            return value
+        print(f"Estado no válido. Los estados permitidos son: {', '.join(ALLOWED_STATUSES)}.")
+
+
+def ask_valid_description(prompt_text):
+    while True:
+        value = input(prompt_text).strip()
+        lowered = value.lower()
+        if value != "" and any(word in lowered for word in REQUIRED_WORDS_IN_DESCRIPTION):
+            return value
+        print("La descripción no puede estar vacía y debe contener la palabra 'usada' o 'certificada'.")
+
+
+def ask_menu_option(prompt_text, valid_options):
+    while True:
+        value = input(prompt_text).strip()
+        if value in valid_options:
+            return value
+        print(f"Opción no válida. Introduce una opción entre {min(valid_options)} y {max(valid_options)}.")
+
 
 print("======================================")
 print("BIENVENIDO AL SISTEMA DE CATÁLOGO V1.0")
 print("======================================")
+print("Estás ingresando al catálogo de piezas coleccionables.")
 
 for i in range(10):
-    item_id = input("Introduce el ID de la pieza: ")
-    name = input("Introduce el nombre del pieza: ")
-    price = float(input("Introduce el precio del pieza: "))
-    category = input("Introduce la categoria del pieza: ")
-    status = input("Introduce el estado del pieza: ")
-    description = input("Introduce la descripcion del pieza: ")
+    print(f"\n--- Pieza {i + 1} de 10 ---")
+    item_id = ask_non_empty_text("Introduce el ID de la pieza: ")
+    name = ask_non_empty_text("Introduce el nombre de la pieza: ")
+    category = ask_non_empty_text("Introduce la categoría de la pieza: ")
+    price = ask_valid_price("Introduce el precio de la pieza: ")
+    status = ask_valid_status("Introduce el estado de la pieza (disponible/reservada/vendida): ")
+    description = ask_valid_description("Introduce la descripción de la pieza: ")
 
     item = {
         "id": item_id,
@@ -68,14 +115,7 @@ if not found:
 
 print("\n===== FILTRAR POR PRECIO MÍNIMO =====")
 
-valid_price = False
-while not valid_price:
-    min_price_input = input("Introduce un precio mínimo: ")
-    if min_price_input.replace(".", "", 1).isdigit():
-        min_price = float(min_price_input)
-        valid_price = True
-    else:
-        print("Debes introducir un valor numérico.")
+min_price = ask_valid_price("Introduce un precio mínimo: ")
 
 found = False
 for piece in catalog:
@@ -112,7 +152,7 @@ print("Concatenación: " + first_piece['name'] + " - " + first_piece['category']
 print(f"Interpolación: {first_piece['name']} - {first_piece['category']}")
 
 # 3. Solicitar etiquetas separadas por comas
-tags_input = input("\nIntroduce etiquetas separadas por comas (ej: retro,anime,limited): ")
+tags_input = ask_non_empty_text("\nIntroduce etiquetas separadas por comas (ej: retro,anime,limited): ")
 
 # 4. Convertir la cadena en elementos separados
 tags_list = tags_input.split(",")
@@ -123,7 +163,7 @@ updated_description = first_piece['description'].replace("usada", "certificada")
 print(f"Descripción actualizada: {updated_description}")
 
 # 6. Solicitar un nombre de usuario
-username = input("\nIntroduce tu nombre de usuario: ")
+username = ask_non_empty_text("\nIntroduce tu nombre de usuario: ")
 
 # 7. Mostrar el nombre en varios formatos
 print(f"Sin espacios: '{username.strip()}'")
@@ -145,7 +185,7 @@ while running:
     print("3. Mostrar el precio promedio")
     print("4. Salir")
 
-    option = input("Elige una opción (1-4): ")
+    option = ask_menu_option("Elige una opción (1-4): ", ["1", "2", "3", "4"])
 
     if option == "1":
         print("\n===== TODAS LAS PIEZAS =====")
@@ -168,9 +208,6 @@ while running:
     elif option == "4":
         print("\n¡Gracias por usar el sistema de catálogo! Hasta pronto.")
         running = False
-
-    else:
-        print("\nOpción no válida. Introduce un número entre 1 y 4.")
 
 available_count = 0
 reserved_count = 0
