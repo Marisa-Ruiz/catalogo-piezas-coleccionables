@@ -100,3 +100,37 @@ print("\n===== PIEZAS NO VENDIDAS =====")
 for piece in catalog:
     if piece['status'] != "vendida":
         print(f"- {piece['id']}: {piece['name']} ({piece['status']})")
+
+print("\n===== MANIPULACIÓN DE STRINGS =====")
+
+first_piece = catalog[0]
+
+# 1. Mostrar info usando concatenación
+print("Concatenación: " + first_piece['name'] + " - " + first_piece['category'])
+
+# 2. Mostrar info usando interpolación (f-string)
+print(f"Interpolación: {first_piece['name']} - {first_piece['category']}")
+
+# 3. Solicitar etiquetas separadas por comas
+tags_input = input("\nIntroduce etiquetas separadas por comas (ej: retro,anime,limited): ")
+
+# 4. Convertir la cadena en elementos separados
+tags_list = tags_input.split(",")
+print(f"Etiquetas como lista: {tags_list}")
+
+# 5. Reemplazar 'usada' por 'certificada' en una descripción
+updated_description = first_piece['description'].replace("usada", "certificada")
+print(f"Descripción actualizada: {updated_description}")
+
+# 6. Solicitar un nombre de usuario
+username = input("\nIntroduce tu nombre de usuario: ")
+
+# 7. Mostrar el nombre en varios formatos
+print(f"Sin espacios: '{username.strip()}'")
+print(f"En minúsculas: {username.lower()}")
+print(f"En mayúsculas: {username.upper()}")
+print(f"En formato título: {username.title()}")
+
+# 8. Normalizar el nombre de una pieza antes de mostrarlo
+normalized_name = first_piece['name'].strip().title()
+print(f"\nNombre de pieza normalizado: {normalized_name}")
