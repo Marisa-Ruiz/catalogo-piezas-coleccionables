@@ -134,3 +134,40 @@ print(f"En formato título: {username.title()}")
 # 8. Normalizar el nombre de una pieza antes de mostrarlo
 normalized_name = first_piece['name'].strip().title()
 print(f"\nNombre de pieza normalizado: {normalized_name}")
+
+print("\n===== MENÚ INTERACTIVO =====")
+
+running = True
+while running:
+    print("\n--- MENÚ ---")
+    print("1. Mostrar todas las piezas")
+    print("2. Mostrar solo las piezas disponibles")
+    print("3. Mostrar el precio promedio")
+    print("4. Salir")
+
+    option = input("Elige una opción (1-4): ")
+
+    if option == "1":
+        print("\n===== TODAS LAS PIEZAS =====")
+        for index, piece in enumerate(catalog, start=1):
+            print(f"{index}. {piece['name']} - {piece['category']} - {piece['price']} - {piece['status']}")
+
+    elif option == "2":
+        print("\n===== PIEZAS DISPONIBLES =====")
+        for piece in catalog:
+            if piece['status'] == "disponible":
+                print(f"- {piece['id']}: {piece['name']} ({piece['price']})")
+
+    elif option == "3":
+        total_price = 0
+        for piece in catalog:
+            total_price = total_price + piece['price']
+        average_price = total_price / len(catalog)
+        print(f"\nEl precio promedio del catálogo es: {average_price:.2f}")
+
+    elif option == "4":
+        print("\n¡Gracias por usar el sistema de catálogo! Hasta pronto.")
+        running = False
+
+    else:
+        print("\nOpción no válida. Introduce un número entre 1 y 4.")
